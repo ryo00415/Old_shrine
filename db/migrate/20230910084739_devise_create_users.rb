@@ -33,10 +33,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
       
       #カラム
-      t.string :last_name, null: false
-      t.string :first_name, null: false
-      t.string :last_name_kana, null: false
-      t.string :first_name_kana, null: false 
+      t.string :name, null: false
+      t.string :name_kana, null: false
       #t.string :email, null: false
       #t.string :encrypted_password, null: false
       t.boolean :is_deleted, null: false, default: false
