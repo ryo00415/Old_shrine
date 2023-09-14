@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   sessions: 'user/sessions'
 }
   get 'users/new'
+  post 'users' => 'users#create'
   get 'users/index'
   get 'users/show'
   get 'users/edit'
