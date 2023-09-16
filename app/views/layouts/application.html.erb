@@ -5,12 +5,55 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <script src="https://kit.fontawesome.com/3fa250182e.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header style="background-image: url('<%= asset_path('header.jpg') %>');" class="py-3">
+      <nav>
+        <a href="<%= root_path %>">
+        <img src="<%= asset_path('logo2.jpg') %>" alt="Logo" class="logo">
+        </a>
+    <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "投稿一覧", phots_path, class: 'nav-link text-dark' %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li>
+            <%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark' %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+          </li>
+          <li>
+            <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="mb-auto">
     <%= yield %>
+  </main>
+  
+  <footer>
+    <div class="container text-center">
+      <p>&copy; <%= Time.now.year %> Old_Shrine. All rights reserved.</p>
+    </div>
+  </footer>
+  
   </body>
 </html>
