@@ -1,14 +1,14 @@
 <!-- _timeline.html.erb -->
 <div class="timeline">
   <!-- タイムラインの各投稿を表示するコード -->
-  <% @timeline_posts.each do |post| %>
-    <div class="post">
-      <p class="post-author"><%= post.author.name %></p>
-      <p class="post-content"><%= post.content %></p>
-      <% if post.image.attached? %>
-        <%= image_tag post.image %>
+  <% @timeline_photos.each do |photo| %>
+    <div class="photo">
+      <p class="photo-author"><%= photo.user.name %></p> <!-- userモデルから名前を取得する例 -->
+      <p class="photo-content"><%= photo.caption %></p> <!-- キャプションを表示する例 -->
+      <% if photo.image.attached? %>
+        <%= image_tag photo.image %> <!-- 画像を表示する例 -->
       <% end %>
-      <p class="post-timestamp"><%= post.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
+      <p class="photo-timestamp"><%= photo.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p> <!-- タイムスタンプのフォーマットを変更する例 -->
     </div>
   <% end %>
 </div>
