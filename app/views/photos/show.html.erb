@@ -3,7 +3,7 @@
 
 <!-- いいねボタン -->
 <% if user_signed_in? %>
-  <%= link_to "いいね", like_photo_path(@photo), method: :post, remote: true, class: "btn btn-primary" %>
+  <%= link_to "いいね", good_photo_path(@photo), method: :post, remote: true, class: "btn btn-primary" %>
 <% end %>
 
 <!-- タイトル -->
@@ -12,7 +12,7 @@
 <!-- コメント一覧 -->
 <% @photo.comments.each do |comment| %>
   <div>
-    <strong><%= comment.user.email %>:</strong> <%= comment.body %>
+    <strong><%= comment.user.email %>:</strong> <%= comment.caption %>
   </div>
 <% end %>
 

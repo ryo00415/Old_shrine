@@ -6,8 +6,8 @@ class GoodsController < ApplicationController
   
   def create
     @photo = Photo.find(params[:id])
-    @like = current_user.likes.build(photo: @photo)
-    if @like.save
+    @good = current_user.likes.build(photo: @photo)
+    if @good.save
       # いいねが成功した場合の処理
       redirect_to @photo, notice: 'いいねしました。'
     else
@@ -18,8 +18,8 @@ class GoodsController < ApplicationController
   
   def destroy
     @photo = Photo.find(params[:id])
-    @like = current_user.likes.find_by(photo: @photo)
-    if @like.destroy
+    @good = current_user.likes.find_by(photo: @photo)
+    if @good.destroy
       # いいねの削除が成功した場合の処理
       redirect_to @photo, notice: 'いいねを取り消しました。'
     else

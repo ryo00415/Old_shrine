@@ -13,16 +13,13 @@ Rails.application.routes.draw do
   sessions: 'user/sessions'
 }
   resources :timelines
-  get 'users/new'
-  post 'users' => 'users#create'
-  get 'users/index'
-  get 'users/show'
-  get 'users/edit'
-  root to: "homes#top"
+  resources :users, only: [:new, :create, :index, :show, :edit]
+  root to: 'homes#top'
   resources :photos do
   member do
     post 'like', to: 'likes#create'
     delete 'unlike', to: 'likes#destroy'
   end
+  resources :comments, only: [:create, :destroy]
   end
 end
