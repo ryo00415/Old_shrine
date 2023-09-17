@@ -1,8 +1,15 @@
 class HomesController < ApplicationController
   def top
-    # タイムライン上の投稿を取得するクエリを追加する
-    # 例: 最新の投稿を取得する場合、投稿モデルから最新の投稿を取得するコードを記述
-    @timeline_photos = Photo.order(created_at: :desc).limit(10)
+    if user_signed_in?
+      # ログインしている場合の処理
+      # タイムライン上の写真を取得するクエリを追加する
+      @timeline_photos = Photo.order(created_at: :desc).limit(10)
+    else
+      # ログインしていない場合の処理
+      # 代替のコンテンツを表示するか、何もしないか、必要に応じて実装
+      # 以下は例ですが、適切なコンテンツに変更してください
+      @alternative_content = "ログインしていません。ログインまたは新規登録をしてください。"
+    end
 
     # 他の必要なロジックや変数の設定を行う
 

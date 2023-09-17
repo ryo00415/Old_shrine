@@ -22,48 +22,26 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
-            <li>
-            <%= link_to "マイページ", users_mypage_path(current_user), class: 'nav-link text-dark' %>
-          　</li>
-          　<li>
-            <%= link_to "投稿投稿一覧", potos_path, class: 'nav-link text-dark' %>
-          　</li>
-          　<li>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-          　</li>
-            <% elsif admin_signed_in? %>
-            <li>
-            <%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark' %>
-          　</li>
-            <li>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-          　</li>
-            <% else %>
-          　<li>
-            <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
-          　</li>
-          　<li>
-            <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-          　</li>
-        　　<% end %>
-        　　<!-- 検索フォーム -->
-            <li class="nav-item">
-            <form class="form-inline" action="<%= search_path %>" method="get">
-            <input class="form-control mr-sm-2" type="search" placeholder="検索" aria-label="検索" name="q">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-            </form>
-            </li>
+              <li>
+                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+              </li>
+              <li>
+                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+              </li>
+              <!-- 検索フォーム -->
+              <li class="nav-item">
+                <form class="form-inline" action="<%= search_path %>" method="get">
+                  <input class="form-control mr-sm-2" type="search" placeholder="検索" aria-label="検索" name="q">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+                </form>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    <% if user_signed_in? || admin_signed_in? %>
-    <%= render 'timeline' %>
-    <% end %>
     <main class="mb-auto">
-    <%= yield %>
+      <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-5 pb-4">
       <div class="container">

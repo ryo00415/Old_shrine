@@ -59,11 +59,9 @@
         </div>
       </nav>
     </header>
-    <% if user_signed_in? || admin_signed_in? %>
-    <%= render 'timeline' %>
-    <% end %>
     <main class="mb-auto">
-    <%= yield %>
+      <%= render 'timeline' %>
+      <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-5 pb-4">
       <div class="container">
