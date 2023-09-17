@@ -1,2 +1,20 @@
-<h1>Photos#index</h1>
-<p>Find me in app/views/photos/index.html.erb</p>
+<h1>投稿一覧</h1>
+
+<% @photos.each do |photo| %>
+  <div class="photo">
+    <%= image_tag photo.image.url %>
+    <h2><%= photo.title %></h2>
+    <p><%= photo.caption %></p>
+    
+    <!-- いいねボタン -->
+    <% if user_signed_in? %>
+      <% if current_user.likes?(photo) %>
+        <%= link_to 'いいねを取り消す', unlike_photo_path(photo), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'いいね', like_photo_path(photo), method: :post, class: 'btn btn-primary' %>
+      <% end %>
+    <% else %>
+      <%= link_to 'ログインしていいね', new_user_session_path, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+<% end %>

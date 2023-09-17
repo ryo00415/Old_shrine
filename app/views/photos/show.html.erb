@@ -1,0 +1,33 @@
+<!-- 投稿画像 -->
+<%= image_tag @photo.image.url, class: "img-fluid" %>
+
+<!-- いいねボタン -->
+<% if user_signed_in? %>
+  <%= link_to "いいね", like_photo_path(@photo), method: :post, remote: true, class: "btn btn-primary" %>
+<% end %>
+
+<!-- タイトル -->
+<h2><%= @photo.title %></h2>
+
+<!-- コメント一覧 -->
+<% @photo.comments.each do |comment| %>
+  <div>
+    <strong><%= comment.user.email %>:</strong> <%= comment.body %>
+  </div>
+<% end %>
+
+<!-- コメント数 -->
+<p><strong>コメント数:</strong> <%= @photo.comments.count %></p>
+
+<!-- コメント投稿フォーム -->
+<% if user_signed_in? %>
+  <%= form_for [@photo, Comment.new], remote: true do |f| %>
+    <%= f.text_area :caption, placeholder: "コメントを入力してください", class: "form-control" %>
+    <%= f.submit "コメントする", class: "btn btn-success" %>
+  <% end %>
+<% end %>
+
+<!-- 写真削除ボタン（投稿者のみ表示） -->
+<% if user_signed_in? && @photo.user == current_user %>
+  <%= link_to '写真を削除', @photo, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+<% end %>

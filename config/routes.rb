@@ -12,10 +12,17 @@ Rails.application.routes.draw do
   registrations: "user/registrations",
   sessions: 'user/sessions'
 }
+  resources :timelines
   get 'users/new'
   post 'users' => 'users#create'
   get 'users/index'
   get 'users/show'
   get 'users/edit'
   root to: "homes#top"
+  resources :photos do
+  member do
+    post 'like', to: 'likes#create'
+    delete 'unlike', to: 'likes#destroy'
+  end
+  end
 end

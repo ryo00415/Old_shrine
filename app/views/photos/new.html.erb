@@ -1,0 +1,22 @@
+<h1>新規投稿</h1>
+
+<%= form_with model: @photo, url: photos_path do |f| %>
+        <table>
+          <tr>
+            <th><%= f.label :商品画像 %></th>
+            <th><%= f.file_field :image %></th>
+          </tr>
+          <tr>
+            <th><%= f.label :商品名 %></th>
+            <td><%= f.text_field :title, placeholder:"タイトル" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :説明 %></th>
+            <td><%= f.text_area :caption, class: "form_control",rows: 5, placeholder:"ここに説明文を記述します" %></td>
+          </tr>
+          <tr>
+          <tr>
+            <th><%= f.submit "新規登録", class: "btn btn-success" %></th>
+          </tr>
+        </table>
+<% end %>
