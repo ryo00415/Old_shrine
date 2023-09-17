@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   registrations: "user/registrations",
   sessions: 'user/sessions'
 }
+  get '/search', to: 'search#search', as: 'search'
   resources :timelines
   resources :users, only: [:new, :create, :index, :show, :edit]
   root to: 'homes#top'
