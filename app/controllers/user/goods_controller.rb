@@ -1,4 +1,4 @@
-class GoodsController < ApplicationController
+class User::GoodsController < ApplicationController
   before_action :authenticate_user! # ログインが必要な場合
   
   def index

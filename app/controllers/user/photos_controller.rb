@@ -1,4 +1,4 @@
-class PhotosController < ApplicationController
+class User::PhotosController < ApplicationController
   def top
   end
   

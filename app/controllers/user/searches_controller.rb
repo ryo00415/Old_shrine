@@ -1,4 +1,4 @@
-class SerchesController < ApplicationController
+class User::SerchesController < ApplicationController
   def search
     @query = params[:q]
     # 検索処理を実装
