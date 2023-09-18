@@ -1,6 +1,6 @@
-class CommentsController < ApplicationController
+class User::CommentsController < ApplicationController
   before_action :authenticate_user! # ユーザーがログインしているか確認
-  
+
   def create
     @photo = Photo.find(params[:photo_id]) # 対象の写真を取得
     @comment = @photo.comments.build(comment_params)
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
       # エラー処理
     end
   end
-  
+
   def destroy
     @comment = Comment.find(params[:id])
     @photo = @comment.photo
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
       # 権限がない場合のエラー処理
     end
   end
-  
+
   private
 
   def comment_params
