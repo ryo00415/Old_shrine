@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User::SessionsController < Devise::SessionsController
+class Public::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -44,9 +44,9 @@ class User::SessionsController < Devise::SessionsController
       redirect_to login_path # パスワードが正しくない場合、リダイレクトなどの適切な処理を行う
     end
   end
-  
+
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+  def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
+  end
 end

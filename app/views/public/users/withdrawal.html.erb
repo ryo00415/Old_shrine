@@ -1,0 +1,9 @@
+<h1>本当に削除しますか？</h1>
+  <p>
+    削除すると、会員登録情報や<br>
+    これまでの投稿投稿が閲覧できなくなります。<br>
+    削除する場合は、「削除する」をクリックしてください。
+  </p>
+
+  <%= link_to "削除しない", user_path(currnt_user), :class => "btn btn-primary ms-3" %>
+  <%= link_to "削除する", users_withdraw_path, method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に削除しますか？" } %>

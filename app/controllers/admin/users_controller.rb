@@ -1,13 +1,7 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
-  end
-  
-  def show
-  end
-  
-  def edit
-  end
-  
-  def update
+    @users = User.all # すべてのユーザーを取得
   end
 end

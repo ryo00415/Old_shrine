@@ -1,4 +1,4 @@
-class User::CommentsController < ApplicationController
+class Public::CommentsController < ApplicationController
   before_action :authenticate_user! # ユーザーがログインしているか確認
 
   def create

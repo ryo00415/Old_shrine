@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
+
     <script src="https://kit.fontawesome.com/3fa250182e.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -24,17 +24,20 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li>
-            <%= link_to "マイページ", users_mypage_path(current_user), class: 'nav-link text-dark' %>
+            <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %>
           　</li>
           　<li>
-            <%= link_to "投稿投稿一覧", potos_path, class: 'nav-link text-dark' %>
+            <%= link_to "投稿投稿一覧", user_photos_path(current_user), class: 'nav-link text-dark' %>
+          　</li>
+          　<li>
+            <%= link_to "いいね一覧", user_goods_path(current_user), class: 'nav-link text-dark' %>
           　</li>
           　<li>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
           　</li>
             <% elsif admin_signed_in? %>
             <li>
-            <%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark' %>
+            <%= link_to "会員一覧", admin_index_path, class: 'nav-link text-dark' %>
           　</li>
             <li>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
