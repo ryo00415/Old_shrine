@@ -1,4 +1,4 @@
-class HomesController < ApplicationController
+class Public::HomesController < ApplicationController
   def top
     if user_signed_in?
       # ログインしている場合の処理
@@ -15,7 +15,7 @@ class HomesController < ApplicationController
 
     # ビューに渡すデータを設定する
     # この行は必要に応じて変更してください
-    @some_other_variable = "Some data"
+    @some_other_variable = Time.now
 
     # ビューを描画する
     render "top"
