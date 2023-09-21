@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   # ユーザー用ルート
   devise_for :users, skip: [:passwords], controllers: {
-    registrations: "user/registrations",
-    sessions: 'user/sessions'
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
   }
   get 'users/withdraw', to: 'users#confirm_withdraw', as: :withdraw_user
   delete 'users/withdraw', to: 'users#withdraw', as: :delete_user

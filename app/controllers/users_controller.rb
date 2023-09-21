@@ -1,4 +1,4 @@
-class Public::UsersController < ApplicationController
+class UsersController < ApplicationController
 
   def show
     @user = current_user
