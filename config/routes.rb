@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     registrations: "user/registrations",
     sessions: 'user/sessions'
   }
-  get 'users/withdraw', to: 'user/users#confirm_withdraw', as: :withdraw_user
-  delete 'users', to: 'user/users#withdraw', as: :delete_user
+  get 'users/withdraw', to: 'users#confirm_withdraw', as: :withdraw_user
+  delete 'users/withdraw', to: 'users#withdraw', as: :delete_user
 
   # ユーザー関連のルート
   resources :users do
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'confirm_withdraw', as: 'confirm_withdraw_user'
       delete 'withdraw', as: 'delete_user'
     end
+    resources :photos, only: [:index]
   end
 
   # 検索ルート
