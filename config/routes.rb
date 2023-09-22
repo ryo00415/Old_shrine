@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   # ユーザー用ルート
-  devise_for :users, skip: [:passwords], controllers: {
+  devise_for :users, skip: [:passwords], path: '', path_names: { sign_in: 'login', sign_up: 'register' }, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
