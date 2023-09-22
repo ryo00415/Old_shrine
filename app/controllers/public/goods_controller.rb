@@ -2,8 +2,13 @@ class Public::GoodsController < ApplicationController
   before_action :authenticate_user! # ログインが必要な場合
 
   def index
-    @user = User.find(params[:user_id])
-    @goods = @user.goods.includes(:photo) # ユーザーが行ったいいね一覧を取得
+    @user = User.find_by(id: params[:userid])
+    if @user.nil?
+      # ユーザーが見つからない場合の処理
+      redirect_to root_path, alert: 'ユーザーが見つかりませんでした。'
+    else
+      @goods = @user.goods.includes(:photo) # ユーザーが行ったいいね一覧を取得
+    end
   end
 
   def create

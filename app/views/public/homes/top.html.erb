@@ -1,0 +1,25 @@
+<div class="welcome-message">
+  <h1>ようこそ！Old_shrineへ！</h1>
+  <p>このサイトは廃神社を閲覧できるSNSです。</p>
+  <p>アカウントを作成せずに写真を閲覧できますが、</p>
+  <p>いいねやコメントをするにはアカウントの作成が必要です。</p>
+</div>
+
+<div class="timeline">
+  <h2>みんなの最新の投稿</h2>
+  <ul>
+    <% if @timeline_photos %>
+      <% @timeline_photos.each do |photo| %>
+        <li>
+          <!-- 写真の表示コードをここに追加 -->
+          <%= image_tag(photo.image.url(:medium)) %>
+          <!-- 他の写真の情報やリンクを表示するコードを追加 -->
+          <h3><%= photo.title %></h3>
+          <!-- 他の写真の情報を表示するコードを追加 -->
+        </li>
+      <% end %>
+    <% else %>
+      <li>タイムライン上の写真はありません。</li>
+    <% end %>
+  </ul>
+</div>

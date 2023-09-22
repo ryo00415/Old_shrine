@@ -2,7 +2,11 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
-    @user = User.find(params[:id])
+    if params[:id].to_i.to_s == params[:id]
+      @user = User.find(params[:id])
+    else
+      redirect_to action: params[:id]
+    end
   end
 
   def edit

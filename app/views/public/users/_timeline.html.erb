@@ -1,7 +1,7 @@
 <!-- _timeline.html.erb -->
 <div class="timeline">
   <!-- タイムラインの各投稿を表示するコード -->
-  <% @timeline_photos.each do |photo| %>
+  <% (@timeline_photos || []).each do |photo| %>
     <div class="photo">
       <p class="photo-author"><%= photo.user.name %></p> <!-- userモデルから名前を取得する例 -->
       <p class="photo-content"><%= photo.caption %></p> <!-- キャプションを表示する例 -->

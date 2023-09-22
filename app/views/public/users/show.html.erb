@@ -1,0 +1,18 @@
+<h2>ユーザー詳細</h2>
+
+<div class="field">
+  <label>フルネーム(漢字)</label><br />
+  <p><%= @user.name %></p>
+</div>
+
+<div class="field">
+  <label>フルネーム(カナ)</label><br />
+  <p><%= @user.name_kana %></p>
+</div>
+
+<div class="field">
+  <label>Eメール</label><br />
+  <p><%= @user.email %></p>
+</div>
+
+<%= link_to "編集", edit_user_registration_path, class: 'btn btn-primary' %>
