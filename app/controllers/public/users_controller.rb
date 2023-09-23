@@ -15,7 +15,7 @@ class Public::UsersController < ApplicationController
   def update
     user = current_user
     user.update(user_params)
-    redirect_to users_path(current_user.id)
+    redirect_to user_path(current_user.id)
   end
 
   def confirm_withdraw
@@ -28,5 +28,11 @@ class Public::UsersController < ApplicationController
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
+  end
+  
+  private
+  
+  def user_params
+    params.require(:user).permit(:name, :name_kana, :email)
   end
 end

@@ -10,7 +10,7 @@ class Public::GoodsController < ApplicationController
       @goods = @user.goods.includes(:photo) # ユーザーが行ったいいね一覧を取得
     end
   end
-
+  
   def create
     @photo = Photo.find(params[:id])
     @good = current_user.goods.build(photo: @photo)

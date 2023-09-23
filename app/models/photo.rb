@@ -1,6 +1,12 @@
 class Photo < ApplicationRecord
+  belongs_to :user
+  has_many :photos
+  has_many :goods
   has_one_attached :image
-  
+  validates :image, presence: true
+  validates :title, presence: true
+  validates :caption, presence: true
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

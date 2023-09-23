@@ -3,7 +3,7 @@
   <!-- タイムラインの各投稿を表示するコード -->
   <% (@timeline_photos || []).each do |photo| %>
     <div class="photo">
-      <p class="photo-author"><%= photo.user.name %></p> <!-- userモデルから名前を取得する例 -->
+      <p class="photo-author"><%= photo.user.name if photo.user %></p> <!-- userモデルから名前を取得する例 -->
       <p class="photo-content"><%= photo.caption %></p> <!-- キャプションを表示する例 -->
       <% if photo.image.attached? %>
         <%= image_tag photo.image %> <!-- 画像を表示する例 -->
