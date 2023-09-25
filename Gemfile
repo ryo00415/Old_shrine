@@ -65,3 +65,4 @@ gem "net-pop"
 gem "net-imap"
 gem 'cancancan'
 gem 'mini_magick'
+gem 'jquery-rails'

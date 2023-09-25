@@ -3,7 +3,7 @@ class Public::HomesController < ApplicationController
     if user_signed_in?
       # ログインしている場合の処理
       # タイムライン上の写真を取得するクエリを追加する
-      @timeline_photos = Photo.order(created_at: :desc).limit(10)
+      @timeline_photos = Photo.order(created_at: :desc).page(params[:page]).per(8)
     else
       # ログインしていない場合の処理
       # 代替のコンテンツを表示するか、何もしないか、必要に応じて実装

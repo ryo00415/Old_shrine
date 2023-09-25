@@ -1,5 +1,16 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
+<style>
+.jumbotron {
+  padding: 1rem 2rem; /* 元々のパディングより小さくします */
+  font-size: 0.8rem; /* フォントサイズを小さくします */
+}
+
+.media {
+  margin: 10px;
+}
+</style>
+
 <div class="container">
   <div class="welcome-message jumbotron mt-5">
     <h1 class="display-4">ようこそ！Old_shrineへ！</h1>
@@ -9,28 +20,43 @@
   </div>
 
   <div class="timeline">
-    <div class="d-flex justify-content-between align-items-center">
-      <h2 class="mb-3">みんなの最新の投稿</h2>
-      <%= link_to "新規投稿", new_photo_path, class: "btn btn-primary" %>
-    </div>
-    <ul class="list-unstyled">
-      <% if @timeline_photos %>
-        <% @timeline_photos.each do |photo| %>
+  <div class="d-flex justify-content-between align-items-center">
+    <h2 class="mb-3">みんなの最新の投稿</h2>
+  </div>
+  <div class="row">
+    <% if @timeline_photos %>
+      <% @timeline_photos.each_with_index do |photo, index| %>
+        <% if index % 4 == 0 && index != 0 %>
+          </div><div class="row">
+        <% end %>
+        <div class="col-md-3 mb-4 px-2">
           <li class="media my-4">
-            <% if photo.image.attached? %>
-              <% variant = photo.image.variant(resize: "300x300") %>
-              <%= image_tag(url_for(variant), class: "mr-3") %>
-            <% end %>
             <div class="media-body">
+              <% if photo.user == current_user %>
+                <%= link_to user_photo_path(current_user, photo) do %>
+                  <% if photo.image.attached? %>
+                    <% variant = photo.image.variant(resize: "200x200") %>
+                    <%= image_tag(url_for(variant), class: "mr-3") %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= link_to user_photo_path(photo.user, photo) do %>
+                  <% if photo.image.attached? %>
+                    <% variant = photo.image.variant(resize: "200x200") %>
+                    <%= image_tag(url_for(variant), class: "mr-3") %>
+                  <% end %>
+                <% end %>
+              <% end %>
               <h5 class="mt-0 mb-1"><%= photo.title %></h5>
               <!-- 他の写真の情報を表示するコードを追加 -->
             </div>
           </li>
-        <% end %>
-      <% else %>
-        <li>タイムライン上の写真はありません。</li>
+        </div>
       <% end %>
-    </ul>
+      <%= paginate @timeline_photos %>
+    <% else %>
+      <li>タイムライン上の写真はありません。</li>
+    <% end %>
   </div>
 </div>
 

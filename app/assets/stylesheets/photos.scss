@@ -1,3 +1,15 @@
 // Place all the styles related to the photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.like-btn {
+  font-size: 25px;
+  color: #808080;
+}
+
+.unlike-btn {
+  font-size: 25px;
+  color: #e54747;
+}
+.fas.fa-heart {
+  color: red;
+}

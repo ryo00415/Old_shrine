@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2023_09_23_151454) do
 
   create_table "comments", force: :cascade do |t|
     t.string "caption", null: false
+    t.integer "photo_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,6 +75,7 @@ ActiveRecord::Schema.define(version: 2023_09_23_151454) do
   end
 
   create_table "photos", force: :cascade do |t|
+    t.integer "user_id"
     t.string "title", null: false
     t.string "caption", null: false
     t.datetime "created_at", precision: 6, null: false

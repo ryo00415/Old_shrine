@@ -24,33 +24,36 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li>
-            <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %>
-          　</li>
-          　<li>
-            <%= link_to "投稿一覧", photos_path(current_user), class: 'nav-link text-dark' %>
-          　</li>
-          　<li>
+            <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-dark' %>
+            </li>
+            <li>
+            <%= link_to "新規投稿", new_user_photo_path(current_user), class: 'nav-link text-dark' %>
+            </li>
+            <li>
+            <%= link_to "投稿一覧", user_photos_path(current_user), class: 'nav-link text-dark' %>
+            </li>
+            <li>
             <%= link_to "いいね一覧", user_goods_path(current_user), class: 'nav-link text-dark' %>
-          　</li>
-          　<li>
+            </li>
+            <li>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-          　</li>
+            </li>
             <% elsif admin_signed_in? %>
             <li>
             <%= link_to "会員一覧", admin_index_path, class: 'nav-link text-dark' %>
-          　</li>
+            </li>
             <li>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-          　</li>
+            </li>
             <% else %>
-          　<li>
+            <li>
             <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
-          　</li>
-          　<li>
+            </li>
+            <li>
             <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-          　</li>
-        　　<% end %>
-        　　<!-- 検索フォーム -->
+            </li>
+            <% end %>
+            <!-- 検索フォーム -->
             <li class="nav-item">
             <form class="form-inline" action="<%= search_path %>" method="get">
             <input class="form-control mr-sm-2" type="search" placeholder="検索" aria-label="検索" name="q">
@@ -63,7 +66,6 @@
       </nav>
     </header>
     <% if user_signed_in? || admin_signed_in? %>
-    <%= render 'public/users/timeline' %>
     <% end %>
     <main class="mb-auto">
     <%= yield %>

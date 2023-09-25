@@ -1,0 +1,6 @@
+// コメントのリストに新しいコメントを追加
+var commentHtml = '<div><strong>' + '<%= j @comment.user.name %>' + ':</strong> ' + '<%= j @comment.caption %>' + '<small>投稿時間: ' + '<%= j @comment.created_at.strftime("%Y年%m月%d日 %H時%M分") %>' + '</small></div>';
+$('#comments').append(commentHtml);
+
+// フォームフィールドをリセット
+$('#new_comment')[0].reset();

@@ -1,7 +1,9 @@
 class Photo < ApplicationRecord
   belongs_to :user
+  has_many :comments
   has_many :photos
   has_many :goods
+  has_many :good_users, through: :goods, source: :user
   has_one_attached :image
   validates :image, presence: true
   validates :title, presence: true

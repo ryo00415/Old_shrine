@@ -1,2 +1,2 @@
-$("#like-button-<%= @photo.id %>").text('いいね');
+$("#like-button-<%= @photo.id %>").html('<i class="far fa-heart like-btn" style="margin-right: 5px;"></i> いいね');
 $("#like-count-<%= @photo.id %>").text('<%= @photo.goods.count %> いいね');

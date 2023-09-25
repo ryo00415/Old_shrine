@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :goods
+  has_many :good_photos, through: :goods, source: :photo
+  has_many :photos
   def goods?(photo)
     goods.exists?(photo_id: photo.id)
   end

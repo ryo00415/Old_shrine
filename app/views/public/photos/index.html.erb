@@ -11,13 +11,13 @@
           <div class="card-body">
             <h5 class="card-title"><%= photo.title %></h5>
             <p class="card-text"><%= photo.caption %></p>
-            
+
             <!-- いいねボタン -->
             <% if user_signed_in? %>
               <% if current_user.goods?(photo) %>
-                <%= link_to 'いいねを取り消す', nogood_photo_path(photo), method: :delete, class: 'btn btn-danger' %>
+                <%= link_to 'いいねを取り消す', nogood_photo_user_photo_path(current_user,photo), method: :delete, class: 'btn btn-danger' %>
               <% else %>
-                <%= link_to 'いいね', good_photo_photo_path(photo), method: :post, class: 'btn btn-primary' %>
+                <%= link_to 'いいね', good_photo_user_photo_path(current_user,photo), method: :post, class: 'btn btn-primary' %>
               <% end %>
               <!-- いいねされている数 -->
               <p><%= photo.goods.count %> いいね</p>

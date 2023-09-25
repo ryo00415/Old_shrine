@@ -1,24 +1,26 @@
 class Public::PhotosController < ApplicationController
   before_action :authenticate_user! # ユーザーがログインしていることを確認
-
   load_and_authorize_resource # 認可を確認
 
   def top
   end
 
   def index
+    @user = User.find(params[:user_id])
     @photo = Photo.new
-    @photos =Photo.all
+    @photos =@user.photos
   end
 
   def new
-    @photo = Photo.new
+    @user = User.find(params[:user_id])
+    @photo = @user.photos.build
   end
 
   def create
-    @photo = Photo.new(photo_params)
+    @user = User.find(params[:user_id])
+    @photo = @user.photos.build(photo_params)
     if @photo.save
-      redirect_to photos_path(current_user), notice: '投稿が作成されました。'
+      redirect_to user_photos_path(@user), notice: '投稿が作成されました。'
     else
       flash.now[:danger] = "投稿内容に不備があります。"
       render :new
@@ -26,16 +28,16 @@ class Public::PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.find(params[:id])
+    @user = User.find(params[:user_id])
+    @photo = @user.photos.find(params[:id])
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
-
-    # ユーザーが写真の所有者であることを確認する認可コードをここに追加
+    @user = User.find(params[:user_id])
+    @photo = @user.photos.find(params[:id])
 
     if @photo.destroy
-      redirect_to photos_path, notice: '写真が削除されました。'
+      redirect_to user_photos_path(@user), notice: '写真が削除されました。'
     else
       flash.now[:danger] = '写真の削除に失敗しました。'
       render :show
