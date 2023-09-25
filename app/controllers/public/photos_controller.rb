@@ -8,7 +8,7 @@ class Public::PhotosController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @photo = Photo.new
-    @photos =@user.photos
+    @photos = @user.photos.page(params[:page]).per(6) # 1ページあたり6件表示
   end
 
   def new

@@ -5,8 +5,10 @@
     <% @photos.each do |photo| %>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <% if photo.image.attached? %>
-            <%= image_tag photo.image, class: 'card-img-top' %>
+          <%= link_to user_photo_path(photo.user, photo) do %>
+            <% if photo.image.attached? %>
+              <%= image_tag photo.image, class: 'card-img-top' %>
+            <% end %>
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= photo.title %></h5>
@@ -30,3 +32,5 @@
     <% end %>
   </div>
 </div>
+
+
