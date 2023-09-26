@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  get 'admin/index', to: 'admins#index', as: 'admin_index'
-
+  
+  namespace :admin do
+    resources :users, only: [:index, :show] do
+      resources :photos, only: [:index, :show, :destroy], controller: 'photos'
+    end
+  end
+  
   # ユーザー関連のルート
   scope module: :public do
     root to: 'homes#top'
@@ -23,7 +28,7 @@ Rails.application.routes.draw do
       end
     end
     resources :timelines, only: [:index]
-    get '/search', to: 'search#search', as: 'search'
+    get '/search', to: 'searches#search', as: 'search'
   end
 
   # ユーザー用ルート

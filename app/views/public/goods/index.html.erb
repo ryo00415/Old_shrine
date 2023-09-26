@@ -1,8 +1,23 @@
-<h1>いいね一覧</h1>
+<h1 class="text-center my-4">いいね一覧</h1>
 
-<% @goods.each do |good| %>
-  <div class="good-item">
-    <%= link_to good.photo.title, photo_path(good.photo) %>
-    <!-- 他のいいね情報の表示 -->
+<div class="container">
+  <div class="row">
+    <% @goods.each do |good| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <%= link_to user_photo_path(current_user, good.photo) do %>
+            <% if good.photo.image.attached? %>
+              <%= image_tag good.photo.image.variant(resize:'500x500').processed, class: 'card-img-top' %>
+            <% end %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= good.photo.title %></h5>
+            <p class="card-text"><%= good.photo.caption %></p>
+            <!-- いいねされている数 -->
+            <p><%= good.photo.goods.count %> いいね</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

@@ -1,22 +1,23 @@
 <h1>会員一覧</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>漢字フルネーム</th>
-      <th>カナフルネーム</th>
-      <th>Email</th>
-      <th>退会済み</th>
+      <th scope="col">漢字フルネーム</th>
+      <th scope="col">カナフルネーム</th>
+      <th scope="col">Email</th>
+      <th scope="col">退会済み</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.full_name_kanji %></td>
-        <td><%= user.full_name_kana %></td>
+        <td><%= link_to user.name, admin_user_photos_path(user) %></td>
+        <td><%= user.name_kana %></td>
         <td><%= user.email %></td>
-        <td><%= user.inactive? ? "はい" : "いいえ" %></td>
+        <td><%= user.is_deleted ? "はい" : "いいえ" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+

@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center align-items-center">
+  <!-- 投稿画像 -->
+  <div class="p-2">
+    <%= image_tag url_for(@photo.image.variant(resize:'500x500').processed), class: "img-fluid", size: "500x500" %>
+  </div>
+
+  <!-- タイトルと説明 -->
+  <div class="p-2">
+    <!-- タイトル -->
+    <h2><%= @photo.title %></h2>
+
+    <!-- 説明 -->
+    <p><%= @photo.caption %></p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-start align-items-center ml-5" style="position: relative;">
+  <!-- コメント数といいねボタン -->
+  <div style="position: absolute; left: 50%; transform: translateX(20%); margin-top: 20px;">
+    <!-- コメント数 -->
+    <p class="mb-0 align-self-center" style="display: inline-block;"><strong>コメント数:</strong> <%= @photo.comments.count %></p>
+    <!-- 写真を削除 -->
+    <% if admin_signed_in? %>
+      <%= link_to '写真を削除', admin_user_photo_path(@photo.user, @photo), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'text-danger' %>
+    <% end %>
+  </div>
+</div>
+
+<!-- コメント一覧 -->
+<div style="margin-top: 50px; margin-left: 710px; max-height: 300px; overflow-y: scroll; direction: rtl;">
+  <div id="comment" style="direction: ltr;">
+    <% @photo.comments.each do |comment| %>
+      <div style="display: flex; align-items: center;">
+        <div>
+          <strong><%= comment.user.name %>:</strong> <%= comment.caption %>
+        </div>
+        <div style="margin-left: 20px; min-width: 150px;">
+          <small>投稿時間: <%= comment.created_at.strftime("%Y年%m月%d日 %H時%M分") %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+

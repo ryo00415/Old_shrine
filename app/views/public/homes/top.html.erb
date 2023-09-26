@@ -35,14 +35,14 @@
               <% if photo.user == current_user %>
                 <%= link_to user_photo_path(current_user, photo) do %>
                   <% if photo.image.attached? %>
-                    <% variant = photo.image.variant(resize: "200x200") %>
+                    <% variant = photo.image.variant(resize: "200x200").processed %>
                     <%= image_tag(url_for(variant), class: "mr-3") %>
                   <% end %>
                 <% end %>
               <% else %>
                 <%= link_to user_photo_path(photo.user, photo) do %>
                   <% if photo.image.attached? %>
-                    <% variant = photo.image.variant(resize: "200x200") %>
+                    <% variant = photo.image.variant(resize: "200x200").processed %>
                     <%= image_tag(url_for(variant), class: "mr-3") %>
                   <% end %>
                 <% end %>

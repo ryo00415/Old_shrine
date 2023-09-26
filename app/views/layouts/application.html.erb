@@ -40,7 +40,7 @@
             </li>
             <% elsif admin_signed_in? %>
             <li>
-            <%= link_to "会員一覧", admin_index_path, class: 'nav-link text-dark' %>
+            <%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark' %>
             </li>
             <li>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>

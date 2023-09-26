@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center align-items-center">
   <!-- 投稿画像 -->
   <div class="p-2">
-    <%= image_tag url_for(@photo.image), class: "img-fluid", size: "500x500" %>
+    <%= image_tag url_for(@photo.image.variant(resize:'500x500').processed), class: "img-fluid", size: "500x500" %>
   </div>
 
   <!-- タイトルと説明 -->
@@ -21,11 +21,19 @@
     <% if user_signed_in? %>
       <% if !@photo.good_users.include?(current_user) %>
         <%= link_to good_photo_user_photo_path(@photo), method: :post, remote: true do %>
-          <i class="far fa-heart like-btn" style="margin-right: 5px;"></i>
+          <span id="like-button-<%= @photo.id %>">
+            <span id="unlike-button-<%= @photo.id %>">
+              <i class="far fa-heart like-btn" style="margin-right: 5px;"></i>
+            </span>
+          </span>
         <% end %>
       <% else %>
         <%= link_to good_photo_user_photo_path(@photo), method: :delete, remote: true do %>
-          <i class="fas fa-heart unlike-btn" style="margin-right: 5px;"></i>
+          <span id="like-button-<%= @photo.id %>">
+            <span id="unlike-button-<%= @photo.id %>">
+              <i class="fas fa-heart unlike-btn" style="margin-right: 5px;"></i>
+            </span>
+          </span>
         <% end %>
       <% end %>
         <% if user_signed_in? && @photo.user == current_user %>
@@ -47,13 +55,19 @@
 </div>
 
 <!-- コメント一覧 -->
-<div style="margin-top: 50px; margin-left: 710px;">
-  <% @photo.comments.each do |comment| %>
-    <div>
-      <strong><%= comment.user.name %>:</strong> <%= comment.caption %>
-      <small>投稿時間: <%= comment.created_at.strftime("%Y年%m月%d日 %H時%M分") %></small>
-    </div>
-  <% end %>
+<div style="margin-top: 50px; margin-left: 710px; max-height: 300px; overflow-y: scroll; direction: rtl;">
+  <div id="comment" style="direction: ltr;">
+    <% @photo.comments.each do |comment| %>
+      <div style="display: flex; align-items: center;">
+        <div>
+          <strong><%= comment.user.name %>:</strong> <%= comment.caption %>
+        </div>
+        <div style="margin-left: 20px; min-width: 150px;">
+          <small>投稿時間: <%= comment.created_at.strftime("%Y年%m月%d日 %H時%M分") %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 
