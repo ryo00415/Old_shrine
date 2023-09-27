@@ -8,6 +8,10 @@ class User < ApplicationRecord
   has_many :comments
   has_many :photos
   attribute :deleted, :boolean, default: false
+  # 追加：admin属性を持つユーザーを管理者として判断するメソッド
+  def admin?
+    self.admin
+  end
   def goods?(photo)
     goods.exists?(photo_id: photo.id)
   end
