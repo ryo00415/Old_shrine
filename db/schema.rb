@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2023_09_23_151454) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "name_kana", null: false
+    t.boolean "admin", default: false
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
