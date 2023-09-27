@@ -29,7 +29,10 @@ class Public::PhotosController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
-    @photo = @user.photos.find(params[:id])
+    @photo = Photo.find(params[:id])
+    if @photo.user_id != @user.id
+    # Handle the error, e.g., redirect_to root_url, etc.
+    end
   end
 
   def destroy

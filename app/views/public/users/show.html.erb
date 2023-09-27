@@ -1,32 +1,36 @@
 <div class="container mt-5">
-  <h2 class="mb-4">ユーザー詳細</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-8 border rounded p-3">
+      <h2 class="mb-4">ユーザー詳細</h2>
 
-  <div class="row mb-3">
-    <div class="col-sm-2">
-      <label>フルネーム(漢字)</label>
-    </div>
-    <div class="col-sm-10">
-      <p><%= @user.name %></p>
+      <div class="row mb-3">
+        <div class="col-sm-2">
+          <label>フルネーム(漢字)</label>
+        </div>
+        <div class="col-sm-10">
+          <p><%= @user.name %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-2">
+          <label>フルネーム(カナ)</label>
+        </div>
+        <div class="col-sm-10">
+          <p><%= @user.name_kana %></p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-2">
+          <label>Eメール</label>
+        </div>
+        <div class="col-sm-10">
+          <p><%= @user.email %></p>
+        </div>
+      </div>
+
+      <%= link_to "編集", edit_user_path, class: 'btn btn-primary' %>
     </div>
   </div>
-
-  <div class="row mb-3">
-    <div class="col-sm-2">
-      <label>フルネーム(カナ)</label>
-    </div>
-    <div class="col-sm-10">
-      <p><%= @user.name_kana %></p>
-    </div>
-  </div>
-
-  <div class="row mb-3">
-    <div class="col-sm-2">
-      <label>Eメール</label>
-    </div>
-    <div class="col-sm-10">
-      <p><%= @user.email %></p>
-    </div>
-  </div>
-
-  <%= link_to "編集", edit_user_path, class: 'btn btn-primary' %>
 </div>

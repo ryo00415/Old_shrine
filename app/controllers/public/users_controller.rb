@@ -24,14 +24,21 @@ class Public::UsersController < ApplicationController
 
   def withdraw
     @user = User.find(current_user.id)
-    @user.update(is_deleted: true)
+    # ユーザーのいいねを全て削除
+    @user.goods.destroy_all
+    # ユーザーのコメントを全て削除
+    @user.comments.destroy_all
+    # ユーザーの写真を全て削除
+    @user.photos.destroy_all
+    # ユーザーを論理的に削除（物理的には削除しない）
+    @user.update(deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
-  
+
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :name_kana, :email, )
   end

@@ -8,7 +8,11 @@ class Ability
 
     if user.persisted?
       can :create, Photo # ログインユーザーは写真を投稿できる
-      can :destroy, Photo, user_id: user.id # ログインユーザーは自分の写真を削除できる
+      if user.admin?
+        can :destroy, Photo # 管理者は全ての写真を削除できる
+      else
+        can :destroy, Photo, user_id: user.id # ログインユーザーは自分の写真を削除できる
+      end
     end
   end
 end
